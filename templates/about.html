@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}О проекте — DigitalHub{% endblock %}
+{% block title %}О проекте — {{ company_info.name|default:"DigitalHub" }}{% endblock %}
 
 {% block content %}
     <section class="page-hero">
@@ -12,16 +12,15 @@
     </section>
     <section class="section">
       <div class="container about">
-        <img src="{% static 'img/about.svg' %}" alt="Команда DigitalHub" class="about__img reveal">
+        <img src="{% static 'img/about.svg' %}" alt="Команда {{ company_info.name|default:'компании' }}" class="about__img reveal">
         <div class="reveal">
           <span class="section__tag">Кто мы</span>
-          <h2 class="section__title">DigitalHub — ваш партнёр в digital</h2>
-          <p class="about__text">Мы — команда специалистов, которая с 2019 года помогает компаниям выходить в онлайн, автоматизировать процессы и привлекать клиентов.</p>
-          <p class="about__text">Каждый проект ведёт персональный менеджер, а работа строится прозрачно: вы видите прогресс на каждом этапе.</p>
+          <h2 class="section__title">{{ company_info.name|default:"О нашей компании" }} — ваш партнёр в digital</h2>
+          <p class="about__text">{{ company_info.description }}</p>
           <ul class="about__list">
-            <li>Опытная команда из 25 специалистов</li>
-            <li>Более 120 успешно реализованных проектов</li>
-            <li>Поддержка и сопровождение после запуска</li>
+            <li>Работаем с {{ company_info.founded_year }} года</li>
+            <li>Более {{ company_info.projects_count }} успешно реализованных проектов</li>
+            <li>{{ company_info.specialists_count }} специалистов в команде</li>
           </ul>
           <a href="{% url 'pages:services' %}" class="btn btn-primary">Смотреть услуги</a>
         </div>

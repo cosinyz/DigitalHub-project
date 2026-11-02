@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Главная — DigitalHub{% endblock %}
+{% block title %}Главная — {{ company_info.name|default:"DigitalHub" }}{% endblock %}
 
 {% block content %}
     <section class="hero">
@@ -9,7 +9,7 @@
         <div class="reveal">
           <span class="section__tag">Digital-агентство</span>
           <h1 class="hero__title">Цифровые решения для <span class="gradient-text">вашего бизнеса</span></h1>
-          <p class="hero__text">DigitalHub — команда разработчиков, дизайнеров и маркетологов. Мы превращаем идеи в работающие продукты.</p>
+          <p class="hero__text">{{ company_info.description }}</p>
           <div class="hero__buttons">
             <a href="{% url 'pages:services' %}" class="btn btn-primary">Наши услуги</a>
             <a href="{% url 'pages:about' %}" class="btn btn-outline">О проекте</a>
@@ -22,10 +22,10 @@
     <section class="section section--alt">
       <div class="container">
         <div class="stats">
-          <div class="stat reveal"><div class="stat__num gradient-text" data-count="120" data-suffix="+">0</div><div class="stat__label">Проектов</div></div>
-          <div class="stat reveal"><div class="stat__num gradient-text" data-count="85" data-suffix="+">0</div><div class="stat__label">Клиентов</div></div>
-          <div class="stat reveal"><div class="stat__num gradient-text" data-count="7">0</div><div class="stat__label">Лет на рынке</div></div>
-          <div class="stat reveal"><div class="stat__num gradient-text" data-count="25">0</div><div class="stat__label">Специалистов</div></div>
+          <div class="stat reveal"><div class="stat__num gradient-text" data-count="{{ company_info.projects_count|default:0 }}" data-suffix="+">0</div><div class="stat__label">Проектов</div></div>
+          <div class="stat reveal"><div class="stat__num gradient-text" data-count="{{ company_info.clients_count|default:0 }}" data-suffix="+">0</div><div class="stat__label">Клиентов</div></div>
+          <div class="stat reveal"><div class="stat__num gradient-text" data-count="{{ company_info.years_in_business|default:0 }}">0</div><div class="stat__label">Лет на рынке</div></div>
+          <div class="stat reveal"><div class="stat__num gradient-text" data-count="{{ company_info.specialists_count|default:0 }}">0</div><div class="stat__label">Специалистов</div></div>
         </div>
       </div>
     </section>
