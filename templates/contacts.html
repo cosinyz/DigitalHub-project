@@ -47,38 +47,39 @@
             {% endif %}
           </div>
 
-          {% if company_info.email %}
-          <form class="form reveal" data-email="{{ company_info.email }}" novalidate>
+          <form class="form reveal" method="post" novalidate>
+            {% csrf_token %}
             <h3 class="form__title">Напишите нам</h3>
+            {% for message in messages %}
+              <p class="form__success show">{{ message }}</p>
+            {% endfor %}
             <div class="form__row">
               <div class="form__group">
-                <label for="name">Имя</label>
-                <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+                <label for="{{ form.name.id_for_label }}">Имя</label>
+                {{ form.name }}
+                {{ form.name.errors }}
                 <div class="form__error">Введите имя</div>
               </div>
               <div class="form__group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="you@mail.com" required>
+                <label for="{{ form.email.id_for_label }}">Email</label>
+                {{ form.email }}
+                {{ form.email.errors }}
                 <div class="form__error">Введите корректный email</div>
               </div>
             </div>
             <div class="form__group">
-              <label for="phone">Телефон</label>
-              <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__">
+              <label for="{{ form.phone.id_for_label }}">Телефон</label>
+              {{ form.phone }}
+              {{ form.phone.errors }}
             </div>
             <div class="form__group">
-              <label for="message">Сообщение</label>
-              <textarea id="message" name="message" rows="5" placeholder="Расскажите о проекте" required></textarea>
+              <label for="{{ form.message.id_for_label }}">Сообщение</label>
+              {{ form.message }}
+              {{ form.message.errors }}
               <div class="form__error">Введите сообщение</div>
             </div>
             <button type="submit" class="btn btn-primary">Отправить</button>
           </form>
-          {% else %}
-            <div class="form reveal">
-              <h3 class="form__title">Напишите нам</h3>
-              <p class="section__text">Контактный email пока не указан.</p>
-            </div>
-          {% endif %}
         </div>
 
         <div class="map reveal">

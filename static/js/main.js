@@ -82,23 +82,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       if (!valid) {
         e.preventDefault();
-        return;
       }
-      e.preventDefault();
-      const recipient = form.dataset.email;
-      if (!recipient) return;
-
-      const name = form.elements.name.value.trim();
-      const sender = form.elements.email.value.trim();
-      const phone = form.elements.phone.value.trim();
-      const message = form.elements.message.value.trim();
-      const subject = encodeURIComponent(`Заявка с сайта DigitalHub: ${name}`);
-      const body = encodeURIComponent(
-        `Имя: ${name}\nEmail: ${sender}\nТелефон: ${phone || "не указан"}\n\n${message}`
-      );
-      window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
     });
-    form.querySelectorAll("input, textarea").forEach((field) =>
+    form.querySelectorAll(".form__group input, .form__group textarea").forEach((field) =>
       field.addEventListener("input", () => field.closest(".form__group").classList.remove("error"))
     );
   }
